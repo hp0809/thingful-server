@@ -1,6 +1,6 @@
 const express = require('express')
 const ThingsService = require('./things-service')
-const {requireAuth} = require('../middleware/basic-auth')
+const { requireAuth } = require('../middleware/jwt-auth')
 
 const thingsRouter = express.Router()
 
@@ -36,7 +36,6 @@ thingsRouter.route('/:thing_id/reviews/')
       .catch(next)
   })
 
-/* async/await syntax for promises */
 async function checkThingExists(req, res, next) {
   try {
     const thing = await ThingsService.getById(
